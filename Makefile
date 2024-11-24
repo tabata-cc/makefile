@@ -79,7 +79,11 @@ show-sq:
 # Nginx のアクセスログを出力する
 .PHONY: show-access
 show-access:
-	sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m $(ALP_REGEX)
+	@if [ -z "$(ALP_REGEX)" ]; then \
+		sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r; \
+	else \
+		sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m $(ALP_REGEX); \
+	fi
 
 # HTTP レスポンスのログを出力する
 .PHONY: show-http-res
