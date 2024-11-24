@@ -17,6 +17,8 @@ ALP_REGEX="/api/livestream/[0-9]+/livecomment,\
 /api/user/[^/]+/statistics,\
 /api/user/[^/]+/icon"
 
+HTTP_RESPONSE_LOG=/tmp/log/app/request_response_body.log
+
 APP_NAME=isupipe-go.service
 
 # MySQL を再起動する
@@ -29,7 +31,7 @@ restart-mysql:
 mysql:
 	mysql -h$(MYSQL_HOST) -P$(MYSQL_PORT) -u$(MYSQL_USER) -p$(MYSQL_PASS)
 
-# MySQL のスロークエリのログを空にする
+# MySQL のスロークエリログを空にする
 .PHONY: clear-sq
 clear-sq:
 	sudo truncate -s 0 $(SLOW_QUERY_LOG)
@@ -39,10 +41,15 @@ clear-sq:
 clear-access:
 	sudo truncate -s 0 $(ACCESS_LOG)
 
+# HTTP レスポンスのログを空にする
+.PHONY: clear-http-res
+clear-http-res:
+	sudo truncate -s 0 $(HTTP_RESPONSE_LOG)
+
 # ログを空にする
 .PHONY: clear-all
 clear-all:
-	make clear-sq && make clear-access
+	make clear-sq && make clear-access && make clear-http-res
 
 # Go アプリケーションを build する
 .PHONY: build
@@ -64,7 +71,7 @@ bench:
 bench-all:
 	make build && make restart-app && make bench
 
-# MySQL のスロークエリを出力する
+# MySQL のスロークエリログを出力する
 .PHONY: show-sq
 show-sq:
 	sudo mysqldumpslow $(SLOW_QUERY_LOG) -s t -r
@@ -73,4 +80,17 @@ show-sq:
 .PHONY: show-access
 show-access:
 	sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m $(ALP_REGEX)
+
+# HTTP レスポンスのログを出力する
+.PHONY: show-http-res
+show-http-res:
+	@if [ -z "$(req)" ]; then \
+		cat /tmp/log/app/request_response_body.log \
+	else \
+		awk ' \
+			index($$0, "$(req)") { in_block=1 } \
+			in_block { print } \
+			index($$0, "HTTP Response Body: End") && in_block { in_block=0 } \
+		' $(HTTP_RESPONSE_LOG); \
+        fi
 
