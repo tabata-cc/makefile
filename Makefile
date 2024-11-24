@@ -16,6 +16,6 @@ bench:
 	cd ~ && ./bench run --enable-ssl
 
 # Go アプリケーションを build して bench を走らせる
-.PHONY: build-bench
+.PHONY: bench-all
 	make build && make restart-app && make bench
 
