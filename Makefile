@@ -32,7 +32,7 @@ clear-access:
 # ログを空にする
 .PHONY: clear-all
 clear-all:
-	make clear-slowquery && make clear-access
+	make clear-sq && make clear-access
 
 # Go アプリケーションを build する
 .PHONY: build
