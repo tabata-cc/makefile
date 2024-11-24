@@ -17,5 +17,6 @@ bench:
 
 # Go アプリケーションを build して bench を走らせる
 .PHONY: bench-all
+bench-all:
 	make build && make restart-app && make bench
 
