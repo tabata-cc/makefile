@@ -82,7 +82,7 @@ show-access:
 	@if [ -z "$(ALP_REGEX)" ]; then \
 		sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r; \
 	else \
-		sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m $(ALP_REGEX); \
+		sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m$(ALP_REGEX); \
 	fi
 
 # HTTP レスポンスのログを出力する
