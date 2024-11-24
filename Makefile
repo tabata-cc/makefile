@@ -51,12 +51,12 @@ clear-http-res:
 clear-all:
 	make clear-sq && make clear-access && make clear-http-res
 
-# Go アプリケーションを build する
+# Go アプリケーションをビルドする
 .PHONY: build
 build:
 	cd ~/webapp/go && make build
 
-# Go アプリケーションを restart する
+# Go アプリケーションを再起動する
 .PHONY: restart-app
 restart-app:
 	sudo systemctl restart $(APP_NAME)
@@ -66,7 +66,7 @@ restart-app:
 bench:
 	make clear-all && cd ~ && ./bench run --enable-ssl
 
-# Go アプリケーションを build して bench を走らせる
+# Go アプリケーションをビルドして bench を走らせる
 .PHONY: bench-all
 bench-all:
 	make build && make restart-app && make bench
