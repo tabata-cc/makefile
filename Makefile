@@ -3,7 +3,7 @@ APP_NAME=isupipe-go.service
 # Go アプリケーションを build する
 .PHONY: build
 build:
-	cd ~/webapp/go && make build && cd ~
+	cd ~/webapp/go && make build
 
 # Go アプリケーションを restart する
 .PHONY: restart-app
