@@ -85,7 +85,7 @@ show-access:
 .PHONY: show-http-res
 show-http-res:
 	@if [ -z "$(req)" ]; then \
-		cat $(HTTP_RESPONSE_LOG) \
+		cat $(HTTP_RESPONSE_LOG); \
 	else \
 		awk -v req="$(req)" ' \
 			index($$0, req) { in_block=1 } \
