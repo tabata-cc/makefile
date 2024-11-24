@@ -85,10 +85,10 @@ show-access:
 .PHONY: show-http-res
 show-http-res:
 	@if [ -z "$(req)" ]; then \
-		cat /tmp/log/app/request_response_body.log \
+		cat $(HTTP_RESPONSE_LOG) \
 	else \
-		awk ' \
-			index($$0, "$(req)") { in_block=1 } \
+		awk -v req="$(req)" ' \
+			index($$0, req) { in_block=1 } \
 			in_block { print } \
 			index($$0, "HTTP Response Body: End") && in_block { in_block=0 } \
 		' $(HTTP_RESPONSE_LOG); \
