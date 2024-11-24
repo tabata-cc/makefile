@@ -5,7 +5,17 @@ MYSQL_PORT=3306
 SLOW_QUERY_LOG=/var/log/mysql/mysql-slow.log
 
 ACCESS_LOG=/var/log/nginx/access.log
-ALP_REGEX=
+ALP_REGEX="/api/livestream/[0-9]+/livecomment,\
+/api/livestream/[0-9]+/reaction,\
+/api/livestream/[0-9]+/report,\
+/api/livestream/[0-9]+/ngwords,\
+/api/livestream/[0-9]+/enter,\
+/api/livestream/[0-9]+/exit,\
+/api/livestream/[0-9]+/moderate,\
+/api/user/[^/]+/theme,\
+/api/user/[^/]+/livestream,\
+/api/user/[^/]+/statistics,\
+/api/user/[^/]+/icon"
 
 APP_NAME=isupipe-go.service
 
@@ -62,5 +72,5 @@ show-sq:
 # Nginx のアクセスログを出力する
 .PHONY: show-access
 show-access:
-	sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m "$(ALP_REGEX)"
+	sudo cat $(ACCESS_LOG) | alp ltsv --sort=sum -r -m $(ALP_REGEX)
 
