@@ -82,7 +82,7 @@ show-sq:
 
 # MySQL のスロークエリログを出力する（mysqldumpslow）
 .PHONY: show-sq2
-show-sq:
+show-sq2:
         sudo mysqldumpslow $(SLOW_QUERY_LOG) -s t -r
 
 # Nginx のアクセスログを出力する
