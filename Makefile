@@ -74,7 +74,7 @@ bench-all:
 # MySQL のスロークエリログを出力する
 .PHONY: show-sq
 show-sq:
-	sudo mysqldumpslow $(SLOW_QUERY_LOG) -s t -r
+	sudo pt-query-digest $(SLOW_QUERY_LOG)
 
 # Nginx のアクセスログを出力する
 .PHONY: show-access
