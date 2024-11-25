@@ -76,9 +76,9 @@ bench-all:
 show-sq:
 	@if [ -z "$(max_len)" ]; then \
 		sudo pt-query-digest $(SLOW_QUERY_LOG); \
-        else \
-		sudo pt-query-digest --filter 'length($event->{arg}) <= $$(max_len)' $(SLOW_QUERY_LOG); \
-        fi
+	else \
+		sudo pt-query-digest --filter 'length($$event->{arg}) <= $(max_len)' $(SLOW_QUERY_LOG); \
+	fi
 
 # MySQL のスロークエリログを出力する（mysqldumpslow）
 .PHONY: show-sq2
