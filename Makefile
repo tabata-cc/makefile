@@ -71,10 +71,19 @@ bench:
 bench-all:
 	make build && make restart-app && make bench
 
-# MySQL のスロークエリログを出力する
+# MySQL のスロークエリログを出力する（pt-query-digest）
 .PHONY: show-sq
 show-sq:
-	sudo pt-query-digest $(SLOW_QUERY_LOG)
+	@if [ -z "$(max_len)" ]; then \
+		sudo pt-query-digest $(SLOW_QUERY_LOG); \
+        else \
+		sudo pt-query-digest --filter 'length($event->{arg}) <= $$(max_len)' $(SLOW_QUERY_LOG); \
+        fi
+
+# MySQL のスロークエリログを出力する（mysqldumpslow）
+.PHONY: show-sq2
+show-sq:
+        sudo mysqldumpslow $(SLOW_QUERY_LOG) -s t -r
 
 # Nginx のアクセスログを出力する
 .PHONY: show-access
