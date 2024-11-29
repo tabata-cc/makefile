@@ -71,6 +71,11 @@ bench:
 bench-all:
 	make build && make restart-app && make bench
 
+# 標準出力を確認する（journalctl）
+.PHONY: show-log
+show-log:
+	sudo journalctl -u $(APP_NAME) -f
+
 # MySQL のスロークエリログを出力する（pt-query-digest）
 .PHONY: show-sq
 show-sq:
