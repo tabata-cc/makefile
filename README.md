@@ -20,6 +20,7 @@
 | `make restart-app` | なし | Go アプリケーションを再起動する |
 | `make bench` | なし | bench を走らせる |
 | `make bench-all` | なし | Go アプリケーションをビルドして、bench を走らせる |
+| `make show-log` | なし | 標準出力を確認する（journalctl） |
 | `make show-sq` | `max_len` | MySQL のスロークエリログを出力する（pt-query-digest）<br>`max_len` で指定した文字数以下のクエリのみを表示できる |
 | `make show-sq2` | なし | MySQL のスロークエリログを出力する（mysqldumpslow） |
 | `make show-access` | `ALP_REGEX` | Nginx のアクセスログを出力する。<br>`ALP_REGEX` で指定した正規表現でリクエストをまとめられる |
