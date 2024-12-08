@@ -20,6 +20,7 @@ ALP_REGEX="/api/livestream/[0-9]+/livecomment,\
 HTTP_RESPONSE_LOG=/tmp/log/app/request_response_body.log
 
 APP_NAME=isuride-go.service
+APP_DIR=./isuride
 
 # MySQL を再起動する
 .PHONY: restart-mysql
@@ -54,7 +55,7 @@ clear-all:
 # Go アプリケーションをビルドする
 .PHONY: build
 build:
-	cd ~/webapp/go && go build -o $(APP_NAME)
+	cd ~/webapp/go && go build -o $(APP_DIR) -ldflags "-s -w"
 
 # Go アプリケーションを再起動する
 .PHONY: restart-app
