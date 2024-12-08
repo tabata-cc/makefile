@@ -5,17 +5,32 @@ MYSQL_PORT=3306
 SLOW_QUERY_LOG=/var/log/mysql/mysql-slow.log
 
 ACCESS_LOG=/var/log/nginx/access.log
-ALP_REGEX="/api/livestream/[0-9]+/livecomment,\
-/api/livestream/[0-9]+/reaction,\
-/api/livestream/[0-9]+/report,\
-/api/livestream/[0-9]+/ngwords,\
-/api/livestream/[0-9]+/enter,\
-/api/livestream/[0-9]+/exit,\
-/api/livestream/[0-9]+/moderate,\
-/api/user/[^/]+/theme,\
-/api/user/[^/]+/livestream,\
-/api/user/[^/]+/statistics,\
-/api/user/[^/]+/icon"
+ALP_REGEX="/api/chair/notification,\
+/api/app/notification,\
+/api/chair/coordinate,\
+/api/owner/chairs,\
+/api/app/nearby-chairs,\
+/api/internal/matching,\
+/api/owner/sales,\
+/api/app/rides,\
+/api/app/rides/[0-9A-Za-z_-]+/evaluation,\
+/api/app/payment-methods,\
+/api/app/rides/estimated-fare,\
+/api/app/users,\
+/api/chair/activity,\
+/api/chair/rides/[0-9A-Za-z_-]+/status,\
+/api/chair/chairs,\
+/api/owner/owners,\
+/assets/[A-Za-z0-9._-]+,\
+/images/[A-Za-z0-9._-]+,\
+/favicon.ico,\
+/favicon-32x32.png,\
+/favicon-128x128.png,\
+/apple-touch-icon-180x180.png,\
+/client,\
+/index.html,\
+/simulator,\
+/owner"
 
 HTTP_RESPONSE_LOG=/tmp/log/app/request_response_body.log
 
