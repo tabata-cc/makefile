@@ -103,6 +103,11 @@ build:
 restart-app:
 	sudo systemctl restart $(APP_NAME)
 
+# Go アプリケーションをビルドして再起動する
+.PHONY: build-all
+build-all:
+	make build && make restart-app
+
 # bench を走らせる
 .PHONY: bench
 bench:
