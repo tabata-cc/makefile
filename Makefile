@@ -21,9 +21,9 @@ ALP_REGEX="/api/chair/notification,\
 /api/chair/rides/[0-9A-Z]+/status,\
 /api/chair/chairs,\
 /api/owner/owners,\
-/images/[A-Za-z0-9]+.png,\
-/images/[A-Za-z0-9]+.svg,\
-/assets/[A-Za-z0-9]+.js,\
+/images/[A-Za-z0-9-_]+.png,\
+/images/[A-Za-z0-9-_]+.svg,\
+/assets/[A-Za-z0-9-_]+.js,\
 /favicon.ico,\
 /favicon-32x32.png,\
 /favicon-128x128.png,\
