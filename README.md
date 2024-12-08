@@ -39,3 +39,7 @@ make bench-all
 ```sh
 make show-http-res req="POST /api/livestream/7554/moderate"
 ```
+
+```sh
+make show-sq max_len=2000
+```
