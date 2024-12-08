@@ -18,6 +18,7 @@
 | `make clear-all` | なし | ログを空にする |
 | `make build` | なし | Go アプリケーションをビルドする |
 | `make restart-app` | なし | Go アプリケーションを再起動する |
+| `make build-all` | なし | Go アプリケーションをビルドして再起動する |
 | `make bench` | なし | bench を走らせる |
 | `make bench-all` | なし | Go アプリケーションをビルドして、bench を走らせる |
 | `make show-log` | なし | 標準出力を確認する（journalctl） |
