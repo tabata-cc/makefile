@@ -63,6 +63,11 @@ HTTP_RESPONSE_LOG=/tmp/log/app/request_response_body.log
 APP_NAME=isuride-go.service
 APP_DIR=./isuride
 
+# Makefile をアプリケーションのディレクトリにコピーする
+.PHONY: cp
+cp:
+	cp ./Makefile ~/webapp/go/
+
 # MySQL を再起動する
 .PHONY: restart-mysql
 restart-mysql:
